@@ -1,0 +1,2067 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Polska & Wielka Brytania — Język, Miasto, Imperium</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@300;400;500;600&display=swap');
+
+:root {
+  --bg: #080810;
+  --surface: #0f0f1a;
+  --surface2: #141428;
+  --red: #c8102e;
+  --red2: #ff2244;
+  --blue: #012169;
+  --blue2: #1a3a8f;
+  --gold: #d4af37;
+  --gold2: #f5cc50;
+  --cream: #f5f0e8;
+  --text: #e8e4dc;
+  --muted: #9590a0;
+  --dim: #5a5570;
+  --serif: 'Playfair Display', Georgia, serif;
+  --sans: 'Inter', system-ui, sans-serif;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-weight: 400;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* ====================== SCROLLBAR ====================== */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--red); border-radius: 2px; }
+
+/* ====================== UTILITY ====================== */
+.serif { font-family: var(--serif); }
+.gold { color: var(--gold); }
+.red { color: var(--red2); }
+.muted { color: var(--muted); }
+.center { text-align: center; }
+
+/* ====================== NAV ====================== */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 40px;
+  background: rgba(8,8,16,0.85);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(212,175,55,0.15);
+}
+.nav-logo {
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  color: var(--gold);
+  letter-spacing: 0.05em;
+}
+.nav-links { display: flex; gap: 28px; list-style: none; }
+.nav-links a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: color 0.3s;
+}
+.nav-links a:hover { color: var(--gold); }
+
+/* ====================== HERO ====================== */
+.hero {
+  height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background: radial-gradient(ellipse at 30% 50%, #0a0a2a 0%, var(--bg) 60%);
+}
+
+/* Stars background */
+.stars {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.star {
+  position: absolute;
+  background: #fff;
+  border-radius: 50%;
+  animation: twinkle var(--d,3s) ease-in-out infinite var(--del,0s);
+}
+@keyframes twinkle {
+  0%,100% { opacity: var(--min,0.1); }
+  50% { opacity: var(--max,0.8); }
+}
+
+/* Big Ben silhouette CSS */
+.bigben-silhouette {
+  position: absolute;
+  bottom: 0;
+  right: 8%;
+  width: 120px;
+  height: 380px;
+  pointer-events: none;
+  opacity: 0.18;
+}
+.bb-tower {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 44px;
+  height: 260px;
+  background: #fff;
+  border-radius: 2px 2px 0 0;
+}
+.bb-clock-face {
+  position: absolute;
+  bottom: 200px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 54px;
+  height: 54px;
+  background: #fff;
+  border-radius: 50%;
+}
+.bb-spire {
+  position: absolute;
+  bottom: 256px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 120px solid #fff;
+}
+.bb-base {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 24px;
+  background: #fff;
+  border-radius: 2px;
+}
+.bb-arch {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 44px;
+  height: 36px;
+  background: #fff;
+}
+
+/* Telephone box CSS */
+.phonebox {
+  position: absolute;
+  bottom: 0;
+  left: 12%;
+  width: 55px;
+  height: 130px;
+  background: #c8102e;
+  border-radius: 4px 4px 0 0;
+  opacity: 0.25;
+  pointer-events: none;
+}
+.phonebox::before {
+  content: '';
+  position: absolute;
+  top: 10px; left: 8px; right: 8px;
+  height: 60px;
+  background: rgba(255,255,255,0.3);
+  border-radius: 2px;
+}
+.phonebox::after {
+  content: '';
+  position: absolute;
+  top: 4px; left: 50%;
+  transform: translateX(-50%);
+  width: 55px;
+  height: 14px;
+  background: #c8102e;
+  border-radius: 4px;
+}
+
+/* Double-decker bus (CSS) */
+.decker-road {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 70px;
+  background: #0d0d14;
+  border-top: 2px solid #1e1e2e;
+  overflow: hidden;
+}
+.road-line {
+  position: absolute;
+  top: 50%;
+  height: 3px;
+  width: 60px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 2px;
+  animation: road 2s linear infinite;
+}
+@keyframes road {
+  from { transform: translateX(110vw); }
+  to   { transform: translateX(-80px); }
+}
+.decker-bus {
+  position: absolute;
+  bottom: 8px;
+  left: -200px;
+  animation: drive 18s linear infinite;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+@keyframes drive {
+  from { left: -200px; }
+  to   { left: 110vw; }
+}
+.bus-top {
+  width: 160px;
+  height: 44px;
+  background: #c8102e;
+  border-radius: 8px 8px 0 0;
+  position: relative;
+}
+.bus-windows-top {
+  position: absolute;
+  top: 8px; left: 10px;
+  display: flex; gap: 6px;
+}
+.bus-win {
+  width: 22px; height: 24px;
+  background: rgba(200,230,255,0.6);
+  border-radius: 3px;
+  border: 1px solid rgba(255,255,255,0.3);
+}
+.bus-bottom {
+  width: 160px;
+  height: 40px;
+  background: #a00c22;
+  border-radius: 0 0 4px 4px;
+  position: relative;
+}
+.bus-windows-bot {
+  position: absolute;
+  top: 8px; left: 30px;
+  display: flex; gap: 6px;
+}
+.bus-door {
+  position: absolute;
+  right: 10px; top: 0;
+  width: 20px; height: 40px;
+  background: #870a1d;
+  border-radius: 0 0 2px 2px;
+}
+.bus-wheels {
+  position: absolute;
+  bottom: -10px;
+  display: flex;
+  gap: 80px;
+  left: 16px;
+}
+.wheel {
+  width: 22px; height: 22px;
+  background: #111;
+  border-radius: 50%;
+  border: 4px solid #555;
+  animation: spin 0.6s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* HERO TEXT */
+.hero-eyebrow {
+  font-size: 0.75rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 20px;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.2s forwards;
+}
+.hero-title {
+  font-family: var(--serif);
+  font-size: clamp(3rem, 7vw, 6.5rem);
+  font-weight: 900;
+  text-align: center;
+  line-height: 1.05;
+  color: var(--cream);
+  opacity: 0;
+  transform: translateY(-80px) rotateX(30deg);
+  transform-origin: bottom center;
+  animation: dropBounce 1.4s cubic-bezier(0.22, 1, 0.36, 1) 0.4s forwards;
+}
+.hero-title .line-red { color: var(--red2); }
+.hero-title .line-gold { color: var(--gold); }
+@keyframes dropBounce {
+  0%   { opacity: 0; transform: translateY(-120px) rotateX(40deg); }
+  60%  { opacity: 1; transform: translateY(0) rotateX(0); }
+  72%  { transform: translateY(-18px); }
+  84%  { transform: translateY(0); }
+  92%  { transform: translateY(-6px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+.hero-subtitle {
+  max-width: 580px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 1.05rem;
+  margin-top: 24px;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 1.2s forwards;
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.hero-scroll {
+  position: absolute;
+  bottom: 90px;
+  right: 40px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  color: var(--gold);
+  opacity: 0;
+  animation: flyArrow 0.8s ease 1.8s forwards, bobArrow 2s ease-in-out 2.6s infinite;
+}
+@keyframes flyArrow {
+  from { opacity: 0; transform: translateX(60px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes bobArrow {
+  0%,100% { transform: translateY(0); }
+  50%     { transform: translateY(10px); }
+}
+
+/* Union Jack accent lines */
+.uj-lines {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.04;
+  overflow: hidden;
+}
+.uj-h { position: absolute; top: 50%; left: 0; right: 0; height: 2px; background: #fff; transform: translateY(-50%); }
+.uj-v { position: absolute; top: 0; bottom: 0; left: 50%; width: 2px; background: #fff; transform: translateX(-50%); }
+.uj-d1 {
+  position: absolute;
+  top: -100%; left: -50%; right: -50%; bottom: -100%;
+  height: 2px; background: var(--red);
+  transform-origin: center;
+  transform: rotate(30deg) translateY(50vh);
+}
+.uj-d2 { transform: rotate(-30deg) translateY(50vh); }
+
+/* ====================== SECTION BASE ====================== */
+section { position: relative; }
+
+.section-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+.section-title {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 700;
+  color: var(--cream);
+  line-height: 1.15;
+}
+.section-divider {
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--red), var(--gold));
+  margin: 20px 0 30px;
+  border-radius: 1px;
+}
+
+/* ====================== POLACY W UK — BUS CARDS ====================== */
+.bus-section {
+  padding: 120px 6vw;
+  background: var(--surface);
+  overflow: hidden;
+}
+.bus-section-header {
+  max-width: 700px;
+  margin: 0 auto 80px;
+  text-align: center;
+}
+
+.bus-fleet {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+.bus-card {
+  position: relative;
+  max-width: 780px;
+  background: var(--red);
+  border-radius: 12px 12px 6px 6px;
+  padding: 44px 52px 52px;
+  box-shadow: 0 20px 60px rgba(200,16,46,0.3);
+  transition: transform 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.8s ease;
+}
+.bus-card::before, .bus-card::after {
+  content: '';
+  position: absolute;
+  bottom: -22px;
+  width: 44px; height: 44px;
+  background: #1a1a1a;
+  border-radius: 50%;
+  border: 6px solid #777;
+  box-shadow: inset 0 0 8px rgba(0,0,0,0.5);
+}
+.bus-card::before { left: 44px; }
+.bus-card::after  { right: 80px; }
+.bus-card-left  { align-self: flex-start; border-left: 10px solid rgba(255,255,255,0.25); transform: translateX(-110vw); opacity: 0; }
+.bus-card-right { align-self: flex-end;  border-right: 10px solid rgba(255,255,255,0.25); transform: translateX(110vw);  opacity: 0; }
+.bus-card.parked { transform: translateX(0); opacity: 1; }
+.bus-card-destination {
+  position: absolute;
+  top: -16px; left: 20px;
+  background: #f5cc50;
+  color: #222;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 4px 14px;
+  border-radius: 4px;
+}
+.bus-card h3 {
+  font-family: var(--serif);
+  font-size: 1.7rem;
+  color: #fff;
+  margin-bottom: 14px;
+}
+.bus-card p { color: rgba(255,255,255,0.88); font-size: 1.05rem; }
+.bus-stat {
+  display: inline-block;
+  margin-top: 18px;
+  background: rgba(0,0,0,0.25);
+  border-radius: 6px;
+  padding: 10px 20px;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #f5cc50;
+  font-family: var(--serif);
+}
+.bus-stat span { font-size: 0.8rem; color: rgba(255,255,255,0.7); display: block; font-family: var(--sans); font-weight: 400; }
+
+/* ====================== LANGUAGE GRID ====================== */
+.lang-section {
+  padding: 120px 6vw;
+  background: linear-gradient(180deg, var(--surface) 0%, var(--bg) 100%);
+}
+.lang-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 28px;
+  margin-top: 60px;
+}
+.lang-card {
+  background: var(--surface2);
+  border-radius: 12px;
+  padding: 32px;
+  border-top: 4px solid var(--blue2);
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.7s ease;
+}
+.lang-card.visible { opacity: 1; transform: translateY(0); }
+.lang-card:nth-child(2) { transition-delay: 0.1s; border-top-color: var(--red); }
+.lang-card:nth-child(3) { transition-delay: 0.2s; border-top-color: var(--gold); }
+.lang-card:nth-child(4) { transition-delay: 0.3s; border-top-color: var(--blue2); }
+.lang-card:nth-child(5) { transition-delay: 0.4s; border-top-color: var(--red); }
+.lang-card:nth-child(6) { transition-delay: 0.5s; border-top-color: var(--gold); }
+.lang-card h4 { font-size: 1.15rem; font-weight: 600; color: var(--cream); margin-bottom: 12px; }
+.lang-card p  { font-size: 0.95rem; color: var(--muted); }
+.card-icon    { font-size: 2rem; margin-bottom: 14px; }
+
+/* ====================== PONGLISH SHOWCASE ====================== */
+.ponglish-section {
+  padding: 100px 6vw;
+  background: var(--surface2);
+  overflow: hidden;
+}
+.ponglish-examples {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 48px;
+}
+.ponglish-pill {
+  background: linear-gradient(135deg, var(--surface), rgba(1,33,105,0.4));
+  border: 1px solid rgba(212,175,55,0.25);
+  border-radius: 100px;
+  padding: 12px 24px;
+  opacity: 0;
+  transform: translateX(30px);
+  transition: all 0.6s ease;
+}
+.ponglish-pill.visible { opacity: 1; transform: translateX(0); }
+.ponglish-pill em { color: var(--gold2); font-style: italic; font-size: 1.05rem; }
+.ponglish-pill .trans { display: block; font-size: 0.78rem; color: var(--muted); margin-top: 3px; }
+
+/* ====================== STREETLIGHTS ====================== */
+.lights-section {
+  padding: 120px 6vw;
+  background: #020205;
+  overflow: hidden;
+}
+.light-scene {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 100px;
+}
+.lamp-unit {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  width: 100%;
+  max-width: 720px;
+  height: 320px;
+  margin: 0 auto;
+}
+.lamp-post-wrap {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 10;
+}
+.lamp-head-cap {
+  width: 10px; height: 16px;
+  background: #888;
+  border-radius: 2px 2px 0 0;
+}
+.lamp-head-body {
+  width: 56px; height: 30px;
+  background: #222;
+  border-radius: 6px 6px 0 0;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.lamp-bulb-glow {
+  width: 24px; height: 12px;
+  background: #333;
+  border-radius: 50%;
+  transition: background 0.8s, box-shadow 0.8s;
+}
+.lamp-pole-long {
+  width: 10px; height: 200px;
+  background: linear-gradient(to right, #0d0d0d, #3a3a3a, #0d0d0d);
+  border-radius: 2px;
+  z-index: -2222222222210;
+}
+.lamp-post-base {
+  width: 34px; height: 14px;
+  background: #1a1a1a;
+  border-radius: 4px;
+}
+.lamp-beam {
+  position: absolute;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 700px;
+  height: 280px;
+  background: radial-gradient(ellipse at 50% 0%, rgba(255,215,0,0.22) 0%, transparent 65%);
+  clip-path: polygon(46% 0, 54% 0, 95% 100%, 5% 100%);
+  opacity: 0;
+  transition: opacity 1.4s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+.lamp-unit.lit .lamp-bulb-glow {
+  background: #fffacd;
+  box-shadow: 0 0 12px #fffacd, 0 0 40px var(--gold), 0 0 80px rgba(212,175,55,0.4);
+}
+.lamp-unit.lit .lamp-beam { opacity: 1; }
+
+.quote-limping {
+  position: absolute;
+  bottom: 20px;
+  z-index: 11;
+  text-align: center;
+  max-width: 500px;
+  padding: 24px 28px;
+  background: rgba(5,5,12,0.75);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 12px;
+  opacity: 0;
+  transform: translateX(240px) rotate(7deg);
+  backdrop-filter: blur(8px);
+}
+.lamp-unit.lit .quote-limping {
+  animation: limp 2.6s cubic-bezier(0.36, 0, 0.66, -0.10) 0.6s forwards;
+}
+@keyframes limp {
+  0%   { opacity: 0; transform: translateX(260px) translateY(30px) rotate(8deg); }
+  15%  { opacity: 0.4; transform: translateX(200px) translateY(-12px) rotate(-2deg); }
+  30%  { transform: translateX(140px) translateY(22px) rotate(5deg); }
+  48%  { transform: translateX(80px) translateY(-8px) rotate(-1deg); }
+  65%  { transform: translateX(30px) translateY(12px) rotate(2deg); }
+  82%  { transform: translateX(6px) translateY(-2px) rotate(0deg); }
+  100% { opacity: 1; transform: translateX(0) translateY(0) rotate(0); }
+}
+.q-en { font-family: var(--serif); font-size: 1.35rem; color: var(--gold); font-style: italic; margin-bottom: 10px; }
+.q-pl { font-size: 0.9rem; color: var(--muted); }
+.q-author { font-size: 0.75rem; color: var(--dim); margin-top: 6px; letter-spacing: 0.08em; }
+
+/* ====================== EMPIRE MAP ====================== */
+.empire-section {
+  padding: 120px 6vw;
+  background: var(--surface);
+}
+.empire-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: start;
+  margin-top: 60px;
+}
+@media (max-width: 900px) { .empire-grid { grid-template-columns: 1fr; } }
+
+/* CSS Globe / Map Area */
+.map-container {
+  background: linear-gradient(160deg, #0a1628 0%, #071020 100%);
+  border: 1px solid rgba(212,175,55,0.2);
+  border-radius: 16px;
+  padding: 30px;
+  position: relative;
+  overflow: hidden;
+}
+.map-title-overlay {
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+/* SVG world map built inline */
+.map-svg-wrap { width: 100%; }
+.territory-dot {
+  position: absolute;
+  width: 8px; height: 8px;
+  background: var(--red);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--red);
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+.map-svg-wrap svg { width: 100%; height: auto; }
+
+.empire-facts {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.empire-fact {
+  background: var(--surface2);
+  border-left: 3px solid var(--gold);
+  border-radius: 0 8px 8px 0;
+  padding: 20px 24px;
+  opacity: 0;
+  transform: translateX(30px);
+  transition: all 0.6s ease;
+}
+.empire-fact.visible { opacity: 1; transform: translateX(0); }
+.empire-fact:nth-child(2) { transition-delay: 0.1s; border-left-color: var(--red); }
+.empire-fact:nth-child(3) { transition-delay: 0.2s; border-left-color: var(--blue2); }
+.empire-fact:nth-child(4) { transition-delay: 0.3s; border-left-color: var(--gold); }
+.empire-fact:nth-child(5) { transition-delay: 0.4s; border-left-color: var(--red); }
+.empire-fact strong { color: var(--gold); font-size: 1.5rem; font-family: var(--serif); display: block; margin-bottom: 4px; }
+.empire-fact p { color: var(--muted); font-size: 0.92rem; }
+
+/* Colony map svgs */
+.colony-label {
+  font-size: 8px;
+  fill: rgba(255,200,0,0.9);
+  font-family: var(--sans);
+}
+
+/* ====================== LONDON ATTRACTIONS ====================== */
+.london-section {
+  padding: 120px 6vw;
+  background: linear-gradient(180deg, var(--bg) 0%, var(--surface) 50%, var(--bg) 100%);
+}
+.attractions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 28px;
+  margin-top: 60px;
+}
+.attraction-card {
+  background: var(--surface2);
+  border-radius: 14px;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.7s ease, box-shadow 0.3s, border-color 0.3s;
+  border: 1px solid rgba(255,255,255,0.05);
+}
+.attraction-card.visible { opacity: 1; transform: translateY(0); }
+.attraction-card:hover {
+  border-color: rgba(212,175,55,0.3);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 30px rgba(212,175,55,0.08);
+  transform: translateY(-4px) !important;
+}
+.attr-thumb {
+  height: 160px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* Each thumbnail is a unique CSS scene */
+.thumb-museum {
+  background: linear-gradient(160deg, #0d1f3c 0%, #1a3a6e 100%);
+}
+.thumb-tower { background: linear-gradient(160deg, #1a0a0a 0%, #3a1010 100%); }
+.thumb-eye   { background: linear-gradient(160deg, #0a1a1a 0%, #0f3040 100%); }
+.thumb-market{ background: linear-gradient(160deg, #0d1208 0%, #1a2a10 100%); }
+.thumb-tube  { background: linear-gradient(160deg, #0a0820 0%, #1a1240 100%); }
+.thumb-park  { background: linear-gradient(160deg, #081208 0%, #0f2010 100%); }
+.thumb-tate  { background: linear-gradient(160deg, #100a1a 0%, #201030 100%); }
+.thumb-greenwich { background: linear-gradient(160deg, #081818 0%, #102828 100%); }
+.thumb-camden{ background: linear-gradient(160deg, #180808 0%, #301010 100%); }
+
+.thumb-icon { font-size: 3.5rem; filter: drop-shadow(0 4px 12px rgba(0,0,0,0.5)); }
+.attr-badge {
+  position: absolute;
+  top: 12px; right: 12px;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 100px;
+}
+.badge-free  { background: rgba(46,160,86,0.25); color: #5bcf7a; border: 1px solid rgba(46,160,86,0.3); }
+.badge-paid  { background: rgba(212,175,55,0.2); color: var(--gold2); border: 1px solid rgba(212,175,55,0.25); }
+.badge-iconic{ background: rgba(200,16,46,0.2); color: #ff5577; border: 1px solid rgba(200,16,46,0.3); }
+.attr-body { padding: 24px 24px 28px; }
+.attr-name  { font-family: var(--serif); font-size: 1.25rem; color: var(--cream); margin-bottom: 8px; }
+.attr-meta  { display: flex; gap: 14px; margin-bottom: 12px; font-size: 0.78rem; color: var(--dim); }
+.attr-meta span { display: flex; align-items: center; gap: 4px; }
+.attr-desc  { font-size: 0.9rem; color: var(--muted); line-height: 1.6; }
+.attr-tip   {
+  margin-top: 14px;
+  padding: 10px 14px;
+  background: rgba(212,175,55,0.07);
+  border-left: 2px solid var(--gold);
+  border-radius: 0 6px 6px 0;
+  font-size: 0.82rem;
+  color: var(--gold);
+}
+
+/* ====================== BRITISH SYMBOLS STRIP ====================== */
+.symbols-strip {
+  padding: 80px 6vw;
+  background: var(--surface2);
+  overflow: hidden;
+}
+.symbols-scroll-track {
+  overflow: hidden;
+  white-space: nowrap;
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+.symbols-scroll-inner {
+  display: inline-flex;
+  gap: 0;
+  animation: marquee 30s linear infinite;
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.symbol-item {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 20px 40px;
+  min-width: 160px;
+}
+.sym-icon { font-size: 2.8rem; }
+.sym-label { font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+
+/* ====================== BRITISH ETIQUETTE ====================== */
+.etiquette-section {
+  padding: 120px 6vw;
+  background: var(--bg);
+}
+.etiquette-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+  margin-top: 60px;
+}
+.etiquette-card {
+  background: var(--surface);
+  border-radius: 12px;
+  padding: 28px;
+  border: 1px solid rgba(255,255,255,0.05);
+  opacity: 0;
+  transform: scale(0.96);
+  transition: all 0.5s ease;
+  position: relative;
+  overflow: hidden;
+}
+.etiquette-card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--blue2), var(--red));
+}
+.etiquette-card.visible { opacity: 1; transform: scale(1); }
+.etiquette-card h4 { font-size: 1.05rem; color: var(--cream); margin-bottom: 10px; }
+.etiquette-card p  { font-size: 0.88rem; color: var(--muted); }
+.etiquette-num {
+  font-family: var(--serif);
+  font-size: 3.5rem;
+  font-weight: 900;
+  color: rgba(212,175,55,0.08);
+  position: absolute;
+  top: 10px; right: 16px;
+  line-height: 1;
+}
+
+/* ====================== TEA SECTION ====================== */
+.tea-section {
+  padding: 100px 6vw;
+  background: linear-gradient(160deg, #0a0810 0%, #120c1a 100%);
+  position: relative;
+  overflow: hidden;
+}
+.tea-content {
+  max-width: 680px;
+  margin: 0 auto;
+  text-align: center;
+}
+.tea-cups {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin: 48px 0;
+}
+/* CSS tea cup */
+.cup-wrap { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.cup {
+  width: 60px; height: 50px;
+  background: #2a1a10;
+  border-radius: 0 0 24px 24px;
+  position: relative;
+  border: 2px solid #5a3a20;
+}
+.cup::before {
+  content: '';
+  position: absolute;
+  top: 4px; left: 6px; right: 6px;
+  height: 12px;
+  background: #8b4513;
+  border-radius: 50%;
+  opacity: 0.8;
+  animation: steam-ripple 3s ease-in-out infinite;
+}
+@keyframes steam-ripple { 0%,100%{opacity:0.6;} 50%{opacity:1;} }
+.cup-handle {
+  width: 20px; height: 28px;
+  border: 3px solid #5a3a20;
+  border-radius: 50%;
+  border-left-color: transparent;
+  position: absolute;
+  right: -14px; top: 8px;
+}
+.cup-saucer {
+  width: 80px; height: 8px;
+  background: #2a1a10;
+  border-radius: 50%;
+  border: 1px solid #5a3a20;
+}
+.steam-line {
+  width: 2px;
+  height: 30px;
+  background: linear-gradient(to top, transparent, rgba(255,255,255,0.3));
+  border-radius: 2px;
+  animation: steamRise 2s ease-in-out infinite;
+  position: absolute;
+  top: -36px;
+}
+.steam-line:nth-child(1) { left: 14px; animation-delay: 0s; }
+.steam-line:nth-child(2) { left: 26px; animation-delay: 0.4s; }
+.steam-line:nth-child(3) { left: 38px; animation-delay: 0.8s; }
+@keyframes steamRise {
+  0% { opacity: 0; transform: translateY(0); }
+  50% { opacity: 1; }
+  100% { opacity: 0; transform: translateY(-20px) scaleY(1.5); }
+}
+
+.tea-facts-strip {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 40px;
+}
+.tea-pill {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 100px;
+  padding: 10px 20px;
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+.tea-pill strong { color: var(--gold); }
+
+/* ====================== TIMELINE ====================== */
+.timeline-section {
+  padding: 120px 6vw;
+  background: var(--surface);
+}
+.timeline {
+  position: relative;
+  max-width: 760px;
+  margin: 60px auto 0;
+}
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0; bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--gold), var(--red), var(--blue2));
+  transform: translateX(-50%);
+}
+@media (max-width: 680px) {
+  .timeline::before { left: 20px; }
+}
+.tl-item {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: calc(50% + 36px);
+  margin-bottom: 56px;
+  opacity: 0;
+  transform: translateX(-30px);
+  transition: all 0.7s ease;
+  position: relative;
+}
+.tl-item:nth-child(even) {
+  justify-content: flex-start;
+  padding-right: 0;
+  padding-left: calc(50% + 36px);
+  transform: translateX(30px);
+}
+.tl-item.visible { opacity: 1; transform: translateX(0); }
+.tl-dot {
+  position: absolute;
+  left: 50%;
+  top: 14px;
+  width: 14px; height: 14px;
+  background: var(--gold);
+  border-radius: 50%;
+  transform: translateX(-50%);
+  border: 3px solid var(--bg);
+  box-shadow: 0 0 10px var(--gold);
+  z-index: 2;
+}
+.tl-content {
+  background: var(--surface2);
+  border-radius: 10px;
+  padding: 20px 24px;
+  max-width: 300px;
+  border-bottom: 3px solid var(--gold);
+}
+.tl-year { font-family: var(--serif); font-size: 1.4rem; color: var(--gold); font-weight: 700; }
+.tl-text { font-size: 0.9rem; color: var(--muted); margin-top: 6px; }
+
+@media (max-width: 680px) {
+  .tl-item, .tl-item:nth-child(even) {
+    justify-content: flex-start;
+    padding-left: 50px; padding-right: 0;
+    transform: translateX(20px);
+  }
+  .tl-dot { left: 20px; }
+  .tl-content { max-width: 100%; }
+}
+
+/* ====================== FOOTER ====================== */
+footer {
+  padding: 60px 6vw 40px;
+  background: #030305;
+  border-top: 1px solid rgba(212,175,55,0.12);
+  text-align: center;
+}
+.footer-logo { font-family: var(--serif); font-size: 1.8rem; color: var(--gold); margin-bottom: 16px; }
+.footer-tagline { color: var(--dim); font-size: 0.85rem; max-width: 500px; margin: 0 auto 32px; }
+.footer-flags { font-size: 2rem; margin-bottom: 24px; letter-spacing: 8px; }
+.footer-credit { font-size: 0.75rem; color: var(--dim); }
+
+/* ====================== INTERSECTION FADE ====================== */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease;
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ====================== SECTION SEPARATOR ====================== */
+.sep {
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  opacity: 0.2;
+}
+
+/* ====================== REDUCE MOTION ====================== */
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">🇵🇱 &amp; 🇬🇧</div>
+  <ul class="nav-links">
+    <li><a href="#polacy">Polacy w UK</a></li>
+    <li><a href="#jezyk">Język</a></li>
+    <li><a href="#imperium">Imperium</a></li>
+    <li><a href="#londyn">Londyn</a></li>
+    <li><a href="#historia">Historia</a></li>
+  </ul>
+</nav>
+
+<!-- ====================== HERO ====================== -->
+<header class="hero" id="hero">
+
+  <!-- Stars -->
+  <div class="stars" id="stars"></div>
+
+  <!-- Union Jack ghost lines -->
+  <div class="uj-lines">
+    <div class="uj-h"></div>
+    <div class="uj-v"></div>
+    <div class="uj-d1"></div>
+    <div class="uj-d2"></div>
+  </div>
+
+  <!-- Big Ben silhouette (right) -->
+  <div class="bigben-silhouette">
+    <div class="bb-spire"></div>
+    <div class="bb-clock-face"></div>
+    <div class="bb-tower"></div>
+    <div class="bb-arch"></div>
+    <div class="bb-base"></div>
+  </div>
+
+  <!-- Telephone box (left) -->
+  <div class="phonebox"></div>
+
+  <div class="hero-eyebrow">Projekt edukacyjny — Klasa VII</div>
+
+  <h1 class="hero-title">
+    <span class="line-red">Polska</span>
+    <span style="color:var(--cream)"> &amp; </span>
+    <span class="line-gold">Wielka Brytania</span><br>
+    <span style="font-size: 0.55em; color: var(--muted); letter-spacing: 0.08em; font-style: italic;">Język · Miasto · Imperium · Ludzie</span>
+  </h1>
+
+  <p class="hero-subtitle">
+    Jak dwa narody — jeden górujący niegdyś nad ćwiercią globu,
+    drugi zahartowany przez tysiąc lat historii — splotły swoje losy
+    i dlaczego język angielski stał się głosem świata.
+  </p>
+
+  <div class="hero-scroll">Przewiń w dół &nbsp; ↓</div>
+
+  <!-- Animated road + double-decker bus -->
+  <div class="decker-road">
+    <div class="road-line" style="animation-delay:0s; left:0"></div>
+    <div class="road-line" style="animation-delay:0.5s; left:0"></div>
+    <div class="road-line" style="animation-delay:1.0s; left:0"></div>
+    <div class="road-line" style="animation-delay:1.5s; left:0"></div>
+    <div class="road-line" style="animation-delay:2.0s; left:0"></div>
+
+    <div class="decker-bus">
+      <div class="bus-top">
+        <div class="bus-windows-top">
+          <div class="bus-win"></div>
+          <div class="bus-win"></div>
+          <div class="bus-win"></div>
+          <div class="bus-win"></div>
+          <div class="bus-win"></div>
+        </div>
+      </div>
+      <div class="bus-bottom">
+        <div class="bus-windows-bot">
+          <div class="bus-win"></div>
+          <div class="bus-win"></div>
+          <div class="bus-win"></div>
+        </div>
+        <div class="bus-door"></div>
+      </div>
+      <div class="bus-wheels">
+        <div class="wheel"></div>
+        <div class="wheel"></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="sep"></div>
+
+<!-- ====================== SECTION 1 — POLACY W UK ====================== -->
+<section class="bus-section" id="polacy">
+  <div class="bus-section-header fade-in">
+    <div class="section-label">Rozdział I</div>
+    <h2 class="section-title serif">Polacy w Wielkiej Brytanii</h2>
+    <div class="section-divider"></div>
+    <p style="color:var(--muted); max-width:560px; margin:0 auto;">
+      Polska emigracja do Wielkiej Brytanii to jedna z największych migracji w najnowszej
+      historii Europy. Po wstąpieniu Polski do UE w 2004 roku setki tysięcy Polaków
+      wybrały Wyspy jako nowy dom.
+    </p>
+  </div>
+
+  <div class="bus-fleet">
+
+    <div class="bus-card bus-card-left js-bus">
+      <div class="bus-card-destination">Linia 1 — Fakty</div>
+      <h3>680 000 Polaków w UK</h3>
+      <p>
+        Przed Brexitem w Wielkiej Brytanii mieszkało blisko 900 tysięcy Polaków.
+        Dziś, po formalnym wyjściu UK z Unii Europejskiej, liczba ta wynosi około
+        680 tysięcy — i nadal jest to jedna z największych polskich diaspor na świecie.
+        Wiele rodzin zdecydowało się pozostać, zakładając tu biznesy i wychowując dzieci.
+      </p>
+      <div class="bus-stat">
+        ~680 000
+        <span>obywateli polskich w UK (2024)</span>
+      </div>
+    </div>
+
+    <div class="bus-card bus-card-right js-bus">
+      <div class="bus-card-destination">Linia 2 — Język</div>
+      <h3>Drugi język Anglii</h3>
+      <p>
+        Wyniki spisu powszechnego pokazały coś zaskakującego: język polski jest
+        <strong style="color:#f5cc50;">drugim najczęściej używanym językiem</strong>
+        w Anglii i Walii po angielskim — wyprzedzając hindi, arabski i walijski.
+        Polskie sklepy, kościoły, gazety i szkoły istnieją w setkach brytyjskich miast.
+      </p>
+      <div class="bus-stat">
+        ~546 000
+        <span>osób mówiących po polsku w domu w Anglii</span>
+      </div>
+    </div>
+
+    <div class="bus-card bus-card-left js-bus">
+      <div class="bus-card-destination">Linia 3 — Wkład</div>
+      <h3>Polacy budują Wielką Brytanię</h3>
+      <p>
+        Polscy lekarze, pielęgniarki, inżynierowie, kierowcy, restauratorzy i
+        programiści są integralną częścią brytyjskiej gospodarki. Według szacunków
+        NHS (Narodowej Służby Zdrowia), obywatele polscy stanowią jeden z największych
+        odsetków zagranicznych pracowników ochrony zdrowia. Bez polskiego wkładu
+        wiele sektorów stanęłoby w miejscu.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<div class="sep"></div>
+
+<!-- ====================== SECTION 2 — JĘZYK ====================== -->
+<section class="lang-section" id="jezyk">
+  <div class="fade-in">
+    <div class="section-label">Rozdział II</div>
+    <h2 class="section-title serif">Dlaczego Angielski Rządzi Światem?</h2>
+    <div class="section-divider"></div>
+    <p style="color:var(--muted); max-width:640px;">
+      Angielski stał się lingua franca — wspólnym językiem cywilizacji — nie przez
+      przypadek, ale przez splot historii, handlu i technologii. To żywy organizm,
+      który nieustannie ewoluuje.
+    </p>
+  </div>
+
+  <div class="lang-grid">
+    <div class="lang-card js-info">
+      <div class="card-icon">🌍</div>
+      <h4>1,5 miliarda użytkowników</h4>
+      <p>Więcej osób uczy się angielskiego niż jakiegokolwiek innego języka obcego na świecie. To więcej ludzi niż cała populacja Chin uczyła się kiedykolwiek mandaryńskiego jako języka obcego.</p>
+    </div>
+
+    <div class="lang-card js-info">
+      <div class="card-icon">✈️</div>
+      <h4>Język lotnictwa i dyplomacji</h4>
+      <p>Każdy pilot na świecie — niezależnie czy leci z Tokio, Rio czy Warszawy — musi zdać egzamin z angielskiego lotniczego. To oficjalny język ICAO (Organizacja Lotnictwa Cywilnego).</p>
+    </div>
+
+    <div class="lang-card js-info">
+      <div class="card-icon">💻</div>
+      <h4>~56% internetu po angielsku</h4>
+      <p>Ponad połowa stron internetowych na świecie jest w języku angielskim. Drugi w kolejności język — rosyjski — zajmuje zaledwie 6%. Znać angielski to znać internet.</p>
+    </div>
+
+    <div class="lang-card js-info">
+      <div class="card-icon">🎭</div>
+      <h4>Germaański + Romański</h4>
+      <p>Angielski to wyjątkowy miks: rdzeń germański (od Anglosasów) plus ogromny wpływ francuskiego i łaciny po inwazji normańskiej 1066 roku. Stąd pary: "pig" (saski) i "pork" (francuski), "house" i "mansion".</p>
+    </div>
+
+    <div class="lang-card js-info">
+      <div class="card-icon">🇺🇸</div>
+      <h4>US vs UK — dwa światy</h4>
+      <p>Brytyjskie "lorry" = amerykańskie "truck". "Flat" = "apartment". "Lift" = "elevator". "Biscuit" w UK to herbatnik, w USA — coś jak bułka. George Bernard Shaw powiedział, że to "dwa narody podzielone wspólnym językiem".</p>
+    </div>
+
+    <div class="lang-card js-info">
+      <div class="card-icon">📚</div>
+      <h4>Oxford English Dictionary</h4>
+      <p>Co roku dodawane są setki nowych słów: "selfie", "binge-watch", "staycation". Angielski nie ma oficjalnej instytucji strażniczej jak polska Rada Języka. Rośnie sam z siebie, wchłaniając słowa ze 150+ języków.</p>
+    </div>
+  </div>
+</section>
+
+<div class="sep"></div>
+
+<!-- ====================== PONGLISH ====================== -->
+<section class="ponglish-section">
+  <div class="fade-in" style="max-width:700px;">
+    <div class="section-label">Fenomen językowy</div>
+    <h2 class="section-title serif">Ponglish — Dwie Dusze w Jednych Ustach</h2>
+    <div class="section-divider"></div>
+    <p style="color:var(--muted);">
+      Kiedy język polski spotyka angielski na co dzień, rodzi się coś wyjątkowego.
+      <em style="color:var(--gold);">Ponglish</em> — hybryda używana przez polską diasporę —
+      to żywe świadectwo procesu adaptacji. Angielskie słowa dostają polskie końcówki
+      gramatyczne, tworząc nowe twory, które są jednocześnie zabawne i genialnie praktyczne.
+    </p>
+  </div>
+
+  <div class="ponglish-examples" id="ponglish-wrap">
+    <div class="ponglish-pill js-pill">
+      <em>Zbookowałem hotel</em>
+      <span class="trans">zarezerwowałem (I booked)</span>
+    </div>
+    <div class="ponglish-pill js-pill">
+      <em>Idę na szoping</em>
+      <span class="trans">na zakupy (shopping)</span>
+    </div>
+    <div class="ponglish-pill js-pill">
+      <em>Wyślij mi mejla</em>
+      <span class="trans">wiadomość e-mail</span>
+    </div>
+    <div class="ponglish-pill js-pill">
+      <em>Zaparkowałem na parkingu</em>
+      <span class="trans">parking (parking lot)</span>
+    </div>
+    <div class="ponglish-pill js-pill">
+      <em>Jadę busem</em>
+      <span class="trans">autobusem (bus)</span>
+    </div>
+    <div class="ponglish-pill js-pill">
+      <em>Mam meeting o trzeciej</em>
+      <span class="trans">spotkanie (meeting)</span>
+    </div>
+    <div class="ponglish-pill js-pill">
+      <em>Dałem mu follow</em>
+      <span class="trans">obserwuję w social media</span>
+    </div>
+    <div class="ponglish-pill js-pill">
+      <em>Trzeba poczekać na benefit</em>
+      <span class="trans">zasiłek, świadczenie</span>
+    </div>
+    <div class="ponglish-pill js-pill">
+      <em>Wyjdź z domu, nie chilluj</em>
+      <span class="trans">odpoczywaj leniwie (chill)</span>
+    </div>
+    <div class="ponglish-pill js-pill">
+      <em>Olaboga, jaki cringe!</em>
+      <span class="trans">żenujące (cringe)</span>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== STREETLIGHTS — CYTATY ====================== -->
+<section class="lights-section">
+  <div class="fade-in center" style="margin-bottom: 80px;">
+    <div class="section-label">Mądrość w ciemności</div>
+    <h2 class="section-title serif">Słowa, Które Przeżyły Wieki</h2>
+    <div class="section-divider" style="margin: 20px auto 0;"></div>
+  </div>
+
+  <div class="light-scene">
+
+    <div class="lamp-unit js-lamp">
+      <div class="lamp-post-wrap">
+        <div class="lamp-head-cap"></div>
+        <div class="lamp-head-body"><div class="lamp-bulb-glow"></div></div>
+        <div class="lamp-pole-long"></div>
+        <div class="lamp-post-base"></div>
+      </div>
+      <div class="lamp-beam"></div>
+      <div class="quote-limping">
+        <div class="q-en">"England and America are two countries separated by a common language."</div>
+        <div class="q-pl">„Anglia i Ameryka to dwa kraje podzielone wspólnym językiem."</div>
+        <div class="q-author">— George Bernard Shaw</div>
+      </div>
+    </div>
+
+    <div class="lamp-unit js-lamp">
+      <div class="lamp-post-wrap">
+        <div class="lamp-head-cap"></div>
+        <div class="lamp-head-body"><div class="lamp-bulb-glow"></div></div>
+        <div class="lamp-pole-long"></div>
+        <div class="lamp-post-base"></div>
+      </div>
+      <div class="lamp-beam"></div>
+      <div class="quote-limping">
+        <div class="q-en">"To have another language is to possess a second soul."</div>
+        <div class="q-pl">„Posiadać inny język, to jak mieć drugą duszę."</div>
+        <div class="q-author">— Karol Wielki (Charlemagne)</div>
+      </div>
+    </div>
+
+    <div class="lamp-unit js-lamp">
+      <div class="lamp-post-wrap">
+        <div class="lamp-head-cap"></div>
+        <div class="lamp-head-body"><div class="lamp-bulb-glow"></div></div>
+        <div class="lamp-pole-long"></div>
+        <div class="lamp-post-base"></div>
+      </div>
+      <div class="lamp-beam"></div>
+      <div class="quote-limping">
+        <div class="q-en">"Do you know what a foreign accent is? It's a sign of bravery."</div>
+        <div class="q-pl">„Wiesz, czym jest obcy akcent? To znak odwagi."</div>
+        <div class="q-author">— Amy Chua</div>
+      </div>
+    </div>
+
+    <div class="lamp-unit js-lamp">
+      <div class="lamp-post-wrap">
+        <div class="lamp-head-cap"></div>
+        <div class="lamp-head-body"><div class="lamp-bulb-glow"></div></div>
+        <div class="lamp-pole-long"></div>
+        <div class="lamp-post-base"></div>
+      </div>
+      <div class="lamp-beam"></div>
+      <div class="quote-limping">
+        <div class="q-en">"When a man is tired of London, he is tired of life."</div>
+        <div class="q-pl">„Kiedy człowiek jest zmęczony Londynem, jest zmęczony życiem."</div>
+        <div class="q-author">— Samuel Johnson, 1777</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="sep"></div>
+
+<!-- ====================== SECTION 3 — IMPERIUM BRYTYJSKIE ====================== -->
+<section class="empire-section" id="imperium">
+  <div class="fade-in">
+    <div class="section-label">Rozdział III</div>
+    <h2 class="section-title serif">Imperium, Na Którym Słońce Nigdy Nie Zachodziło</h2>
+    <div class="section-divider"></div>
+    <p style="color:var(--muted); max-width:640px;">
+      Wielkie Imperium Brytyjskie w swoim szczytowym momencie (ok. 1920 r.) obejmowało
+      ponad jedną czwartą powierzchni Ziemi i około jedną czwartą ludzkości.
+      To właśnie imperium rozsiane język angielski po pięciu kontynentach.
+    </p>
+  </div>
+
+  <div class="empire-grid">
+
+    <!-- SVG WORLD MAP WITH COLONIES -->
+    <div class="map-container fade-in">
+      <div class="map-title-overlay">🗺 Zasięg Imperium Brytyjskiego (~1920)</div>
+      <div class="map-svg-wrap">
+        <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg">
+          <!-- Ocean background -->
+          <rect width="800" height="420" fill="#071830" rx="8"/>
+
+          <!-- Simplified continent outlines -->
+          <!-- North America -->
+          <path d="M 85 60 L 230 55 L 260 70 L 270 90 L 265 120 L 250 140 L 240 160 L 230 180 L 220 200 L 200 220 L 180 240 L 160 250 L 145 260 L 130 255 L 115 240 L 100 220 L 88 200 L 80 175 L 75 150 L 72 120 L 75 90 Z" fill="#0f2840" stroke="rgba(100,140,200,0.25)" stroke-width="0.8"/>
+          <!-- Canada (colony - highlighted) -->
+          <path d="M 85 60 L 230 55 L 255 65 L 265 85 L 255 100 L 240 95 L 200 98 L 165 95 L 130 90 L 100 85 L 88 75 Z" fill="rgba(200,16,46,0.35)" stroke="rgba(212,175,55,0.3)" stroke-width="0.8"/>
+          <!-- India subcontinent region -->
+          <path d="M 510 130 L 540 125 L 565 130 L 575 150 L 570 175 L 555 200 L 540 215 L 525 210 L 510 190 L 505 165 L 505 145 Z" fill="rgba(200,16,46,0.4)" stroke="rgba(212,175,55,0.35)" stroke-width="0.8"/>
+          <!-- Africa continent -->
+          <path d="M 380 145 L 430 138 L 460 148 L 468 170 L 465 200 L 460 225 L 450 255 L 440 280 L 425 300 L 405 310 L 385 308 L 368 295 L 358 270 L 352 245 L 350 215 L 352 185 L 358 165 L 368 150 Z" fill="#0f2840" stroke="rgba(100,140,200,0.2)" stroke-width="0.8"/>
+          <!-- South Africa (colony) -->
+          <path d="M 360 280 L 400 275 L 440 278 L 448 295 L 430 310 L 405 315 L 380 310 L 362 298 Z" fill="rgba(200,16,46,0.38)" stroke="rgba(212,175,55,0.3)" stroke-width="0.8"/>
+          <!-- East Africa (colony) -->
+          <path d="M 432 215 L 462 210 L 470 230 L 465 250 L 450 256 L 432 248 L 425 232 Z" fill="rgba(200,16,46,0.3)" stroke="rgba(212,175,55,0.25)" stroke-width="0.8"/>
+          <!-- West Africa partial (colony) -->
+          <path d="M 358 195 L 400 188 L 428 195 L 430 215 L 410 220 L 380 218 L 358 210 Z" fill="rgba(200,16,46,0.28)" stroke="rgba(212,175,55,0.22)" stroke-width="0.8"/>
+          <!-- Egypt/Sudan -->
+          <path d="M 440 148 L 465 145 L 472 165 L 465 185 L 445 188 L 433 175 L 433 158 Z" fill="rgba(200,16,46,0.3)" stroke="rgba(212,175,55,0.25)" stroke-width="0.8"/>
+          <!-- Australia -->
+          <path d="M 610 245 L 680 238 L 715 250 L 730 275 L 728 310 L 710 330 L 680 340 L 645 338 L 615 325 L 600 300 L 598 272 Z" fill="rgba(200,16,46,0.38)" stroke="rgba(212,175,55,0.3)" stroke-width="0.8"/>
+          <!-- New Zealand (small) -->
+          <path d="M 730 310 L 745 305 L 752 320 L 745 335 L 732 332 Z" fill="rgba(200,16,46,0.35)" stroke="rgba(212,175,55,0.25)" stroke-width="0.8"/>
+          <!-- Europe (simplified) -->
+          <path d="M 345 60 L 410 55 L 430 70 L 435 90 L 420 100 L 400 105 L 380 100 L 355 95 L 340 80 Z" fill="#0f2840" stroke="rgba(100,140,200,0.2)" stroke-width="0.8"/>
+          <!-- Great Britain (highlighted) -->
+          <path d="M 352 62 L 363 58 L 373 63 L 372 75 L 362 80 L 352 76 Z" fill="rgba(212,175,55,0.7)" stroke="rgba(212,175,55,0.9)" stroke-width="1"/>
+          <!-- South America -->
+          <path d="M 195 240 L 240 232 L 265 248 L 270 280 L 265 320 L 250 355 L 228 370 L 205 365 L 188 345 L 182 310 L 180 275 L 185 255 Z" fill="#0f2840" stroke="rgba(100,140,200,0.2)" stroke-width="0.8"/>
+          <!-- Guiana (colony small) -->
+          <path d="M 228 235 L 248 232 L 256 245 L 248 255 L 228 252 Z" fill="rgba(200,16,46,0.3)" stroke="rgba(212,175,55,0.2)" stroke-width="0.6"/>
+          <!-- Southeast Asia / Burma / Malaya -->
+          <path d="M 600 155 L 640 148 L 658 165 L 655 185 L 635 192 L 610 188 L 598 172 Z" fill="rgba(200,16,46,0.32)" stroke="rgba(212,175,55,0.25)" stroke-width="0.7"/>
+
+          <!-- Colony labels -->
+          <text x="155" y="75" class="colony-label">KANADA</text>
+          <text x="520" y="170" class="colony-label">INDIE</text>
+          <text x="635" y="290" class="colony-label">AUSTRALIA</text>
+          <text x="368" y="295" class="colony-label">RPA</text>
+          <text x="362" y="66" class="colony-label" fill="rgba(255,220,60,0.95)" font-size="7">UK</text>
+          <text x="438" y="158" class="colony-label">EGIPT</text>
+          <text x="607" y="168" class="colony-label">MALAJE</text>
+
+          <!-- Legend -->
+          <rect x="14" y="370" width="14" height="10" fill="rgba(200,16,46,0.45)" stroke="rgba(212,175,55,0.5)" stroke-width="0.7" rx="2"/>
+          <text x="33" y="379" fill="rgba(212,175,55,0.8)" font-size="9" font-family="sans-serif">Kolonie brytyjskie</text>
+          <rect x="140" y="370" width="14" height="10" fill="rgba(212,175,55,0.7)" stroke="rgba(212,175,55,0.9)" stroke-width="0.7" rx="2"/>
+          <text x="159" y="379" fill="rgba(212,175,55,0.8)" font-size="9" font-family="sans-serif">Wielka Brytania</text>
+
+          <!-- Decorative grid lines (meridians/parallels) -->
+          <line x1="0" y1="210" x2="800" y2="210" stroke="rgba(100,150,200,0.07)" stroke-width="0.5"/>
+          <line x1="400" y1="0" x2="400" y2="420" stroke="rgba(100,150,200,0.07)" stroke-width="0.5"/>
+          <line x1="0" y1="105" x2="800" y2="105" stroke="rgba(100,150,200,0.05)" stroke-width="0.5"/>
+          <line x1="0" y1="315" x2="800" y2="315" stroke="rgba(100,150,200,0.05)" stroke-width="0.5"/>
+          <line x1="200" y1="0" x2="200" y2="420" stroke="rgba(100,150,200,0.05)" stroke-width="0.5"/>
+          <line x1="600" y1="0" x2="600" y2="420" stroke="rgba(100,150,200,0.05)" stroke-width="0.5"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Empire facts -->
+    <div class="empire-facts">
+      <div class="fade-in" style="margin-bottom: 8px;">
+        <h3 style="font-family:var(--serif); color:var(--cream); font-size:1.4rem;">Kluczowe fakty o Imperium</h3>
+      </div>
+
+      <div class="empire-fact js-empire">
+        <strong>25%</strong>
+        <p>powierzchni Ziemi kontrolowało Imperium Brytyjskie w 1920 roku — 35,5 mln km², więcej niż jakiekolwiek inne imperium w historii.</p>
+      </div>
+
+      <div class="empire-fact js-empire">
+        <strong>~458 mln</strong>
+        <p>ludzi żyło pod panowaniem brytyjskim w 1938 roku — 1/4 ówczesnej populacji globu. Od Karaibów przez Afrykę po Azję Południowo-Wschodnią.</p>
+      </div>
+
+      <div class="empire-fact js-empire">
+        <strong>Indie — Klejnot Korony</strong>
+        <p>Subkontynent indyjski był nazywany "Jewel in the Crown" — perłą Imperium. Brytyjczycy rządzili tu od 1858 do 1947 roku. Dziś Indie są największą demokracją świata i jednym z najszybciej rosnących krajów.</p>
+      </div>
+
+      <div class="empire-fact js-empire">
+        <strong>Afryka — "Wyścig po Afrykę"</strong>
+        <p>W trakcie "Scramble for Africa" (1880–1914) europejskie mocarstwa podzieliły między siebie cały kontynent. Wielka Brytania kontrolowała m.in. Egipt, Sudan, Kenię, Nigerię, RPA i Rodezję. Kolonialne granice, często rysowane linią prostą bez uwzględnienia lokalnych społeczności, wiele problemów zostawiły do dzisiaj.</p>
+      </div>
+
+      <div class="empire-fact js-empire">
+        <strong>Dziedzictwo języka</strong>
+        <p>To właśnie kolonializm rozsiewał angielski po świecie. Australia, Kanada, Nowa Zelandia, RPA, Indie, Nigeria, Kenia, Jamajka — wszystkie te kraje mają angielski jako oficjalny lub główny język, bo niegdyś były częścią Imperium.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Additional Africa deep-dive -->
+  <div style="margin-top: 80px;" class="fade-in">
+    <div class="section-label">Rozwinięcie</div>
+    <h3 class="section-title serif" style="font-size: clamp(1.5rem, 3vw, 2.2rem);">Afryka pod Brytyjską Kontrolą</h3>
+    <div class="section-divider"></div>
+  </div>
+
+  <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap:20px; margin-top:36px;">
+    <div class="lang-card js-info" style="border-top-color: var(--gold);">
+      <div class="card-icon">🇿🇦</div>
+      <h4>Południowa Afryka</h4>
+      <p>Pod rządami brytyjskimi (od 1806 r.) nastąpił intensywny konflikt z Burami (potomkami holenderskich osadników) — wojen burskich (1880–81 i 1899–1902). Dziś RPA to jedno z najbardziej zróżnicowanych językowo państw — 11 oficjalnych języków.</p>
+    </div>
+    <div class="lang-card js-info" style="border-top-color: var(--red); transition-delay: 0.1s;">
+      <div class="card-icon">🇪🇬</div>
+      <h4>Egipt i Sudan</h4>
+      <p>Brytyjczycy kontrolowali Egipt od 1882 roku. Kanał Sueski był kluczowym szlakiem handlowym między Europą a Indiami. Sudan był tzw. "Kondominium Angielsko-Egipskim" — fasadą wspólnych rządów, gdzie faktyczna kontrola należała do Londynu.</p>
+    </div>
+    <div class="lang-card js-info" style="border-top-color: var(--blue2); transition-delay: 0.2s;">
+      <div class="card-icon">🇳🇬</div>
+      <h4>Nigeria</h4>
+      <p>Najludniejsze państwo Afryki (dziś ~220 mln mieszkańców) było kolonią brytyjską do 1960 roku. Granice Nigerii narysowali Brytyjczycy, łącząc ponad 250 grup etnicznych. Angielski jest tu oficjalnym językiem, choć mówi nim jako pierwszym nieomal nikt.</p>
+    </div>
+    <div class="lang-card js-info" style="border-top-color: var(--gold); transition-delay: 0.3s;">
+      <div class="card-icon">🇰🇪</div>
+      <h4>Kenia</h4>
+      <p>Broni Wschodniej Afryki, kolonia od 1895 roku. Płodne wyżyny przyciągały białych osadników — stąd region "Białej Wyżyny". Kenia uzyskała niepodległość w 1963 roku. Dziś znana z maratonów — kenijscy biegacze zdominowali światowy atletyzm.</p>
+    </div>
+  </div>
+</section>
+
+<div class="sep"></div>
+
+<!-- ====================== SECTION 4 — LONDON ATTRACTIONS ====================== -->
+<section class="london-section" id="londyn">
+  <div class="fade-in">
+    <div class="section-label">Rozdział IV</div>
+    <h2 class="section-title serif">Londyn — Miasto Tysiąca Historii</h2>
+    <div class="section-divider"></div>
+    <p style="color:var(--muted); max-width:640px;">
+      Ponad 300 języków. 170 muzeów. Podziemia z czasów Rzymian.
+      Londyn to nie jedno miasto — to dziesiątki miast nałożonych na siebie przez wieki.
+      Oto miejsca, które musisz odwiedzić.
+    </p>
+  </div>
+
+  <div class="attractions-grid">
+
+    <div class="attraction-card js-attr">
+      <div class="attr-thumb thumb-museum">
+        <div class="thumb-icon">🏛️</div>
+        <span class="attr-badge badge-free">Bezpłatne</span>
+      </div>
+      <div class="attr-body">
+        <div class="attr-name">British Museum</div>
+        <div class="attr-meta">
+          <span>📍 Bloomsbury</span>
+          <span>🕐 ok. 3–4 godz.</span>
+        </div>
+        <p class="attr-desc">Jedno z największych i najważniejszych muzeów świata. 8 milionów eksponatów z całej historii ludzkości — od egipskiej mumii przez Kamień z Rozetty po greckie marmury Elgina. Wszystko za darmo.</p>
+        <div class="attr-tip">💡 Wskazówka: Przyjedź w tygodniu rano — w weekendy długie kolejki. Wielka Sala jest sama w sobie architektonicznym arcydziełem.</div>
+      </div>
+    </div>
+
+    <div class="attraction-card js-attr">
+      <div class="attr-thumb thumb-tower">
+        <div class="thumb-icon">🏰</div>
+        <span class="attr-badge badge-iconic">Ikona</span>
+      </div>
+      <div class="attr-body">
+        <div class="attr-name">Tower of London</div>
+        <div class="attr-meta">
+          <span>📍 The City</span>
+          <span>🕐 ok. 2–3 godz.</span>
+        </div>
+        <p class="attr-desc">Twierdza z 1066 roku, przez wieki służąca jako zamek królewski, więzienie i skarbiec. Tu przechowywane są Klejnoty Korony Brytyjskiej. Strażnicy "Beefeaters" w historycznych strojach prowadzą wciągające wycieczki.</p>
+        <div class="attr-tip">💡 Wskazówka: Kup bilet online — oszczędzasz 20%. Spędź czas ze strażnikami — są żywymi encyklopediami historii.</div>
+      </div>
+    </div>
+
+    <div class="attraction-card js-attr">
+      <div class="attr-thumb thumb-eye">
+        <div class="thumb-icon">🎡</div>
+        <span class="attr-badge badge-paid">Płatne</span>
+      </div>
+      <div class="attr-body">
+        <div class="attr-name">London Eye</div>
+        <div class="attr-meta">
+          <span>📍 South Bank</span>
+          <span>🕐 ok. 30 min.</span>
+        </div>
+        <p class="attr-desc">Gigantyczne koło obserwacyjne nad Tamizą — 135 metrów wysokości. Z kapsuły widać cały Londyn: od Wembley po Canary Wharf. Zwłaszcza o zachodzie słońca widok jest zapierający dech. Otworzone w 2000 roku na milenium.</p>
+        <div class="attr-tip">💡 Wskazówka: Rezerwacja "Fast Track" omija kolejkę. O świcie lub o zachodzie słońca fotografie są absolutnie niesamowite.</div>
+      </div>
+    </div>
+
+    <div class="attraction-card js-attr">
+      <div class="attr-thumb thumb-market">
+        <div class="thumb-icon">🍎</div>
+        <span class="attr-badge badge-free">Wstęp wolny</span>
+      </div>
+      <div class="attr-body">
+        <div class="attr-name">Borough Market</div>
+        <div class="attr-meta">
+          <span>📍 Southwark</span>
+          <span>🕐 ok. 1–2 godz.</span>
+        </div>
+        <p class="attr-desc">Londyński targ działający od 1014 roku — jeden z najstarszych rynków żywnościowych w Europie. Dziś mecca smakoszy: sery z całego świata, świeże ostrygi, angielskie pasztety, kawa specialty i uliczne jedzenie z 30 krajów. Dla Polaka — kultura szoku w najlepszym wydaniu.</p>
+        <div class="attr-tip">💡 Wskazówka: Przyjedź głodny w sobotę rano. Próbuj wszystkiego — większość stoisk chętnie częstuje.</div>
+      </div>
+    </div>
+
+    <div class="attraction-card js-attr">
+      <div class="attr-thumb thumb-tube">
+        <div class="thumb-icon">🚇</div>
+        <span class="attr-badge badge-iconic">Ikona</span>
+      </div>
+      <div class="attr-body">
+        <div class="attr-name">London Underground — "The Tube"</div>
+        <div class="attr-meta">
+          <span>📍 Całe miasto</span>
+          <span>🕐 Codziennie</span>
+        </div>
+        <p class="attr-desc">Najstarsza sieć metra na świecie, otwarta w 1863 roku. 11 linii, 272 stacje, 5 milionów pasażerów dziennie. Czerwono-niebieska mapa Tube stała się ikonicznym symbolem designu — jej autor Harry Beck zmienił historię kartografii.</p>
+        <div class="attr-tip">💡 Wskazówka: Kup kartę Oyster lub użyj zbliżeniowej karty płatniczej — taniej niż bilet papierowy. "Mind the gap!" — pamiętaj o szczelinie.</div>
+      </div>
+    </div>
+
+    <div class="attraction-card js-attr">
+      <div class="attr-thumb thumb-park">
+        <div class="thumb-icon">🌳</div>
+        <span class="attr-badge badge-free">Bezpłatne</span>
+      </div>
+      <div class="attr-body">
+        <div class="attr-name">Hyde Park + Kensington Gardens</div>
+        <div class="attr-meta">
+          <span>📍 Westminster</span>
+          <span>🕐 Cały dzień</span>
+        </div>
+        <p class="attr-desc">350 hektarów zieleni w samym centrum metropolii. Hyde Park to legendarny Speaker's Corner — od wieków każdy może tu wygłosić mowę na dowolny temat. Serpentyną pływają łabędzie, a w Kensington Gardens mieszka pamięć Princess Diany.</p>
+        <div class="attr-tip">💡 Wskazówka: Latem w Hyde Parku odbywają się koncerty na żywo, pikniki i wystawy. Wstęp zawsze wolny.</div>
+      </div>
+    </div>
+
+    <div class="attraction-card js-attr">
+      <div class="attr-thumb thumb-tate">
+        <div class="thumb-icon">🎨</div>
+        <span class="attr-badge badge-free">Bezpłatne</span>
+      </div>
+      <div class="attr-body">
+        <div class="attr-name">Tate Modern</div>
+        <div class="attr-meta">
+          <span>📍 Bankside</span>
+          <span>🕐 ok. 2–4 godz.</span>
+        </div>
+        <p class="attr-desc">Galeria sztuki współczesnej w dawnej elektrowni nad Tamizą — sama architektura budynku jest dziełem sztuki. Picasso, Rothko, Warhol, Dalí. Z tarasu na 10. piętrze panorama Londynu i mostu Millennium Bridge jest jedna z najpiękniejszych w mieście.</p>
+        <div class="attr-tip">💡 Wskazówka: Stała kolekcja gratis, wystawy czasowe płatne. Sklep z artykułami artystycznymi to ratunek dla każdego miłośnika designu.</div>
+      </div>
+    </div>
+
+    <div class="attraction-card js-attr">
+      <div class="attr-thumb thumb-greenwich">
+        <div class="thumb-icon">🌐</div>
+        <span class="attr-badge badge-paid">Część płatna</span>
+      </div>
+      <div class="attr-body">
+        <div class="attr-name">Greenwich — Południk Zerowy</div>
+        <div class="attr-meta">
+          <span>📍 Greenwich</span>
+          <span>🕐 ok. 3 godz.</span>
+        </div>
+        <p class="attr-desc">Tu przebiega południk 0° — od 1884 roku czas na całym świecie mierzy się względem Greenwich Mean Time (GMT). Możesz stanąć jedną nogą na wschodniej, drugą na zachodniej półkuli. Royal Observatory i Muzeum Marynarki Królewskiej należą do najciekawszych na świecie.</p>
+        <div class="attr-tip">💡 Wskazówka: Dopłyń z centrum Tamizą łodzią — widok miasta z rzeki jest niesamowity. Kliper "Cutty Sark" — jeden z ostatnich wielkich żaglowców — stoi tuż obok.</div>
+      </div>
+    </div>
+
+    <div class="attraction-card js-attr">
+      <div class="attr-thumb thumb-camden">
+        <div class="thumb-icon">🎸</div>
+        <span class="attr-badge badge-free">Wstęp wolny</span>
+      </div>
+      <div class="attr-body">
+        <div class="attr-name">Camden Market</div>
+        <div class="attr-meta">
+          <span>📍 Camden Town</span>
+          <span>🕐 ok. 2–3 godz.</span>
+        </div>
+        <p class="attr-desc">Legendarny alternatywny rynek — mekka punkowców, gotyków i miłośników muzyki. Tu Amy Winehouse robiła zakupy, tu rodziły się brytyjskie subkultury. Jedzenie uliczne z całego świata, vintage, tatuaże i muzyka na żywo w każdym zakamarku.</p>
+        <div class="attr-tip">💡 Wskazówka: Sobota to szczyt — tłok ale najlepsza atmosfera. Zjedz przy kanale i obserwuj ludzi — nigdzie indziej nie zobaczysz takiej różnorodności.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="sep"></div>
+
+<!-- ====================== BRITISH SYMBOLS STRIP ====================== -->
+<section class="symbols-strip">
+  <div class="fade-in center" style="margin-bottom: 40px;">
+    <div class="section-label">Kultura</div>
+    <h2 class="section-title serif">Symbole Wielkiej Brytanii</h2>
+    <div class="section-divider" style="margin: 18px auto 0;"></div>
+  </div>
+
+  <div class="symbols-scroll-track">
+    <div class="symbols-scroll-inner">
+      <!-- First set -->
+      <div class="symbol-item"><div class="sym-icon">☕</div><div class="sym-label">Herbata</div></div>
+      <div class="symbol-item"><div class="sym-icon">🎩</div><div class="sym-label">Cylinder</div></div>
+      <div class="symbol-item"><div class="sym-icon">☂️</div><div class="sym-label">Parasol</div></div>
+      <div class="symbol-item"><div class="sym-icon">🚂</div><div class="sym-label">Kolej</div></div>
+      <div class="symbol-item"><div class="sym-icon">🦁</div><div class="sym-label">Lew</div></div>
+      <div class="symbol-item"><div class="sym-icon">👑</div><div class="sym-label">Korona</div></div>
+      <div class="symbol-item"><div class="sym-icon">📰</div><div class="sym-label">The Times</div></div>
+      <div class="symbol-item"><div class="sym-icon">🍺</div><div class="sym-label">Pub Ale</div></div>
+      <div class="symbol-item"><div class="sym-icon">🎡</div><div class="sym-label">London Eye</div></div>
+      <div class="symbol-item"><div class="sym-icon">🐦</div><div class="sym-label">Kruk z Tower</div></div>
+      <div class="symbol-item"><div class="sym-icon">⚽</div><div class="sym-label">Football</div></div>
+      <div class="symbol-item"><div class="sym-icon">🎻</div><div class="sym-label">Orkiestra</div></div>
+      <div class="symbol-item"><div class="sym-icon">🕵️</div><div class="sym-label">Sherlock</div></div>
+      <div class="symbol-item"><div class="sym-icon">🏴󠁧󠁢󠁳󠁣󠁴󠁿</div><div class="sym-label">Szkocja</div></div>
+      <div class="symbol-item"><div class="sym-icon">🎶</div><div class="sym-label">Beatles</div></div>
+      <div class="symbol-item"><div class="sym-icon">🦒</div><div class="sym-label">Zoo Londyn</div></div>
+      <!-- Duplicate for seamless loop -->
+      <div class="symbol-item"><div class="sym-icon">☕</div><div class="sym-label">Herbata</div></div>
+      <div class="symbol-item"><div class="sym-icon">🎩</div><div class="sym-label">Cylinder</div></div>
+      <div class="symbol-item"><div class="sym-icon">☂️</div><div class="sym-label">Parasol</div></div>
+      <div class="symbol-item"><div class="sym-icon">🚂</div><div class="sym-label">Kolej</div></div>
+      <div class="symbol-item"><div class="sym-icon">🦁</div><div class="sym-label">Lew</div></div>
+      <div class="symbol-item"><div class="sym-icon">👑</div><div class="sym-label">Korona</div></div>
+      <div class="symbol-item"><div class="sym-icon">📰</div><div class="sym-label">The Times</div></div>
+      <div class="symbol-item"><div class="sym-icon">🍺</div><div class="sym-label">Pub Ale</div></div>
+      <div class="symbol-item"><div class="sym-icon">🎡</div><div class="sym-label">London Eye</div></div>
+      <div class="symbol-item"><div class="sym-icon">🐦</div><div class="sym-label">Kruk z Tower</div></div>
+      <div class="symbol-item"><div class="sym-icon">⚽</div><div class="sym-label">Football</div></div>
+      <div class="symbol-item"><div class="sym-icon">🎻</div><div class="sym-label">Orkiestra</div></div>
+      <div class="symbol-item"><div class="sym-icon">🕵️</div><div class="sym-label">Sherlock</div></div>
+      <div class="symbol-item"><div class="sym-icon">🏴󠁧󠁢󠁳󠁣󠁴󠁿</div><div class="sym-label">Szkocja</div></div>
+      <div class="symbol-item"><div class="sym-icon">🎶</div><div class="sym-label">Beatles</div></div>
+      <div class="symbol-item"><div class="sym-icon">🦒</div><div class="sym-label">Zoo Londyn</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="sep"></div>
+
+<!-- ====================== ETIQUETTE ====================== -->
+<section class="etiquette-section">
+  <div class="fade-in">
+    <div class="section-label">Savoir-vivre</div>
+    <h2 class="section-title serif">Niepisane Reguły Brytyjskiego Życia</h2>
+    <div class="section-divider"></div>
+    <p style="color:var(--muted); max-width:600px;">
+      Polak przyjeżdżający do Wielkiej Brytanii natychmiast zauważy, że pewne zasady
+      są tu przestrzegane z niemal religijną powagą — choć nikt ich wprost nie wymawia.
+    </p>
+  </div>
+
+  <div class="etiquette-grid">
+    <div class="etiquette-card js-etiquette">
+      <div class="etiquette-num">01</div>
+      <h4>Kolejka jest świętością</h4>
+      <p>Wejście poza kolejką to prawie przestępstwo. Brytyjczycy będą cierpliwie czekać godzinami, ale nie tolerują "queue-jumping". Wystarczy stanąć za ostatnią osobą — system działa bez słowa.</p>
+    </div>
+    <div class="etiquette-card js-etiquette">
+      <div class="etiquette-num">02</div>
+      <h4>"Sorry" — słowo klucz</h4>
+      <p>Brytyjczycy przepraszają za wszystko — nawet gdy to ty na nich wpadłeś. "Sorry" nie zawsze znaczy "przepraszam" — często to grzeczne przywołanie uwagi lub łagodzenie napięcia. "Are you alright?" nie pyta o zdrowie, to zwykłe powitanie.</p>
+    </div>
+    <div class="etiquette-card js-etiquette">
+      <div class="etiquette-num">03</div>
+      <h4>Herbata rozwiązuje wszystko</h4>
+      <p>Śmierć w rodzinie? Herbata. Wypadek? Herbata. Problemy w pracy? Zdecydowanie herbata. Brytyjczycy piją przeciętnie 100 milionów filiżanek dziennie. "Shall I put the kettle on?" to wyraz empatii w najczystszej formie.</p>
+    </div>
+    <div class="etiquette-card js-etiquette">
+      <div class="etiquette-num">04</div>
+      <h4>Stój po prawej, idź po lewej</h4>
+      <p>Na ruchomych schodach metra — prawa strona dla stojących, lewa dla spieszących się. Naruszenie tej reguły w Londynie może wywołać spojrzenie pełne dezaprobaty, co u Brytyjczyków jest odpowiednikiem głośnej awantury.</p>
+    </div>
+    <div class="etiquette-card js-etiquette">
+      <div class="etiquette-num">05</div>
+      <h4>Pub to salon, nie bar</h4>
+      <p>Angielski pub (od "public house" — dom publiczny) to centrum życia społecznego. Nie krzyczysz przez lokal — podchodzisz do baru. Nie siadasz przy zajętym stoliku bez pytania. I nie ma tu kelnera — sama zamawiasz przy barze. Round system: każdy kolejno funduje rundę wszystkim.</p>
+    </div>
+    <div class="etiquette-card js-etiquette">
+      <div class="etiquette-num">06</div>
+      <h4>Pogoda — bezpieczny temat</h4>
+      <p>Polityka, religia, pieniądze — tematy ryzykowne. Pogoda — zawsze bezpieczna. "Lovely weather, isn't it?" to nie stwierdzenie faktyczne, ale rytuał społeczny. Nawet gdy leje deszcz, znajdziesz miłe słowo: "At least it's not snowing!"</p>
+    </div>
+  </div>
+</section>
+
+<div class="sep"></div>
+
+<!-- ====================== TEA ====================== -->
+<section class="tea-section">
+  <div class="tea-content fade-in">
+    <div class="section-label">Kultura kulinarna</div>
+    <h2 class="section-title serif center">Herbata — Płynna Tożsamość Narodu</h2>
+    <div class="section-divider" style="margin: 20px auto 30px;"></div>
+    <p style="color:var(--muted); margin: 0 auto 32px;">
+      Wielka Brytania nie wyhodowała ani jednego liścia herbaty na własnej ziemi —
+      a jednak stała się krajem herbaty na świecie. To imperium zrobiło z niej
+      kulturowy fundament narodu.
+    </p>
+  </div>
+
+  <div class="tea-cups">
+    <div class="cup-wrap">
+      <div class="cup" style="position:relative">
+        <div class="steam-line"></div>
+        <div class="steam-line"></div>
+        <div class="steam-line"></div>
+        <div class="cup-handle"></div>
+      </div>
+      <div class="cup-saucer"></div>
+    </div>
+    <div class="cup-wrap">
+      <div class="cup" style="position:relative; background:#1a120a; border-color:#7a4a28">
+        <div class="steam-line"></div>
+        <div class="steam-line"></div>
+        <div class="steam-line"></div>
+        <div class="cup-handle" style="border-color:#7a4a28"></div>
+      </div>
+      <div class="cup-saucer" style="background:#1a120a; border-color:#7a4a28"></div>
+    </div>
+    <div class="cup-wrap">
+      <div class="cup" style="position:relative; background:#22120e; border-color:#6a3020">
+        <div class="steam-line"></div>
+        <div class="steam-line"></div>
+        <div class="steam-line"></div>
+        <div class="cup-handle" style="border-color:#6a3020"></div>
+      </div>
+      <div class="cup-saucer" style="background:#22120e; border-color:#6a3020"></div>
+    </div>
+  </div>
+
+  <div class="tea-facts-strip fade-in">
+    <div class="tea-pill"><strong>100 mln</strong> filiżanek dziennie w UK</div>
+    <div class="tea-pill">Herbata dotarła do Anglii w <strong>1600s</strong></div>
+    <div class="tea-pill">Najpopularniejsza: <strong>Yorkshire Tea</strong> i PG Tips</div>
+    <div class="tea-pill">"Tea time" o <strong>17:00</strong> — tradycja z lat 1840</div>
+    <div class="tea-pill">Mleko <strong>przed</strong> czy po herbacie? — odwieczna debata</div>
+    <div class="tea-pill">East India Company sprowadziła herbatę z <strong>Indii i Chin</strong></div>
+  </div>
+</section>
+
+<div class="sep"></div>
+
+<!-- ====================== TIMELINE ====================== -->
+<section class="timeline-section" id="historia">
+  <div class="fade-in center">
+    <div class="section-label">Rozdział V</div>
+    <h2 class="section-title serif">Kluczowe Daty Angielskiego Języka i Imperium</h2>
+    <div class="section-divider" style="margin: 20px auto 0;"></div>
+  </div>
+
+  <div class="timeline">
+
+    <div class="tl-item js-tl">
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <div class="tl-year">449 n.e.</div>
+        <p class="tl-text">Anglosasi i Jutowie najeżdżają Brytanię. Ich germański dialekt staje się zalążkiem języka angielskiego — "Old English".</p>
+      </div>
+    </div>
+
+    <div class="tl-item js-tl">
+      <div class="tl-dot" style="background:var(--red); box-shadow: 0 0 10px var(--red);"></div>
+      <div class="tl-content">
+        <div class="tl-year">1066</div>
+        <p class="tl-text">Normanowie podbijają Anglię pod wodzą Wilhelma Zdobywcy. Język francuski wchodzi do elity — na 300 lat angielskim mówią tylko chłopi. Stąd dualizm: "pig/pork", "house/mansion".</p>
+      </div>
+    </div>
+
+    <div class="tl-item js-tl">
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <div class="tl-year">1400s</div>
+        <p class="tl-text">Middle English rozkwita. Geoffrey Chaucer pisze "Opowieści Kanterberyjskie" — pierwszą wielką literaturę w języku angielskim, nie łacińskim.</p>
+      </div>
+    </div>
+
+    <div class="tl-item js-tl">
+      <div class="tl-dot" style="background:var(--red); box-shadow: 0 0 10px var(--red);"></div>
+      <div class="tl-content">
+        <div class="tl-year">1600s</div>
+        <p class="tl-text">Szekspir wprowadza do języka ~2000 nowych słów. Pierwsze kolonie angielskie w Ameryce Północnej i Indiach. Narodziny Imperium.</p>
+      </div>
+    </div>
+
+    <div class="tl-item js-tl">
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <div class="tl-year">1776</div>
+        <p class="tl-text">Niezależność USA. Angielski "odpływa" za ocean — i przez kolejne 200 lat ewoluuje osobno. Stąd różnice między British English a American English.</p>
+      </div>
+    </div>
+
+    <div class="tl-item js-tl">
+      <div class="tl-dot" style="background:var(--red); box-shadow: 0 0 10px var(--red);"></div>
+      <div class="tl-content">
+        <div class="tl-year">1884</div>
+        <p class="tl-text">Południk Greenwich (0°) ustanowiony światowym odniesieniem czasu. Londyn staje się centrum świata dosłownie — i w przenośni.</p>
+      </div>
+    </div>
+
+    <div class="tl-item js-tl">
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <div class="tl-year">1920</div>
+        <p class="tl-text">Szczyt Imperium Brytyjskiego — 35,5 mln km², 458 mln poddanych. "The sun never sets on the British Empire."</p>
+      </div>
+    </div>
+
+    <div class="tl-item js-tl">
+      <div class="tl-dot" style="background:var(--red); box-shadow: 0 0 10px var(--red);"></div>
+      <div class="tl-content">
+        <div class="tl-year">1945–1960</div>
+        <p class="tl-text">Dekolonizacja. Indie (1947), Ghana (1957), Nigeria (1960) — narody odzyskują niepodległość, ale angielski pozostaje. Imperium upada, język zostaje.</p>
+      </div>
+    </div>
+
+    <div class="tl-item js-tl">
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <div class="tl-year">2004</div>
+        <p class="tl-text">Polska wstępuje do UE. Wielka fala emigracji do UK. Polski staje się drugim językiem Anglii. Nowy rozdział relacji polsko-brytyjskich.</p>
+      </div>
+    </div>
+
+    <div class="tl-item js-tl">
+      <div class="tl-dot" style="background:var(--gold); box-shadow: 0 0 10px var(--gold);"></div>
+      <div class="tl-content">
+        <div class="tl-year">Dziś</div>
+        <p class="tl-text">~1,5 mld ludzi mówi po angielsku. 680 000 Polaków mieszka w UK. Świat jest połączony jednym językiem — i wciąż szuka nowych słów, by opisać rzeczywistość.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="sep"></div>
+
+<!-- ====================== FOOTER ====================== -->
+<footer>
+  <div class="footer-flags">🇵🇱 🇬🇧</div>
+  <div class="footer-logo">Polska &amp; Wielka Brytania</div>
+  <p class="footer-tagline">
+    "Każdy język to inne widzenie świata." — Federico Fellini<br>
+    <em style="color:var(--dim); font-size:0.9em;">Projekt edukacyjny — klasa VII szkoły podstawowej</em>
+  </p>
+  <div style="display:flex; justify-content:center; gap:32px; margin:24px 0; flex-wrap:wrap;">
+    <span style="font-size:0.8rem; color:var(--dim);">🗣️ Język angielski</span>
+    <span style="font-size:0.8rem; color:var(--dim);">🌍 Imperium Brytyjskie</span>
+    <span style="font-size:0.8rem; color:var(--dim);">🏙️ Londyn</span>
+    <span style="font-size:0.8rem; color:var(--dim);">🇵🇱 Polacy za granicą</span>
+  </div>
+  <p class="footer-credit">Wykonano dla ECE ta panie Węgierek Barbara</p>
+</footer>
+
+<!-- ====================== JAVASCRIPT ====================== -->
+<script>
+/* Generate stars */
+const starsEl = document.getElementById('stars');
+for (let i = 0; i < 180; i++) {
+  const s = document.createElement('div');
+  s.className = 'star';
+  const size = Math.random() * 2.5 + 0.5;
+  s.style.cssText = `
+    left:${Math.random()*100}%;
+    top:${Math.random()*100}%;
+    width:${size}px;height:${size}px;
+    --d:${(Math.random()*4+1).toFixed(1)}s;
+    --del:-${(Math.random()*4).toFixed(1)}s;
+    --min:${(Math.random()*0.2).toFixed(2)};
+    --max:${(Math.random()*0.7+0.3).toFixed(2)};
+  `;
+  starsEl.appendChild(s);
+}
+
+/* Road lines */
+const road = document.querySelector('.decker-road');
+for (let i = 0; i < 8; i++) {
+  const l = document.createElement('div');
+  l.className = 'road-line';
+  l.style.cssText = `top:50%; animation-delay:${i * 0.25}s; left:${i * 14}%`;
+  road.appendChild(l);
+}
+
+/* Intersection Observer factory */
+function makeObserver(className, threshold, addCls) {
+  const els = document.querySelectorAll(className);
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) e.target.classList.add(addCls);
+    });
+  }, { threshold: threshold, rootMargin: '0px 0px -60px 0px' });
+  els.forEach(el => obs.observe(el));
+}
+
+makeObserver('.js-bus',      0.2,  'parked');
+makeObserver('.js-info',     0.1,  'visible');
+makeObserver('.js-empire',   0.15, 'visible');
+makeObserver('.js-attr',     0.1,  'visible');
+makeObserver('.fade-in',     0.1,  'visible');
+makeObserver('.js-etiquette',0.1,  'visible');
+makeObserver('.js-tl',       0.25, 'visible');
+makeObserver('.lang-card',   0.1,  'visible');
+
+/* Ponglish pills stagger */
+const pills = document.querySelectorAll('.js-pill');
+const pillObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      pills.forEach((p, i) => setTimeout(() => p.classList.add('visible'), i * 80));
+      pillObs.disconnect();
+    }
+  });
+}, { threshold: 0.2 });
+if (pills.length) pillObs.observe(pills[0].parentElement);
+
+/* Streetlights — trigger on 50% in view */
+const lamps = document.querySelectorAll('.js-lamp');
+const lampObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('lit');
+    }
+  });
+}, { threshold: 0.45 });
+lamps.forEach(l => lampObs.observe(l));
+
+/* Attraction cards stagger */
+const attrs = document.querySelectorAll('.js-attr');
+const attrObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.08 });
+attrs.forEach((a, i) => {
+  a.style.transitionDelay = `${(i % 3) * 0.12}s`;
+  attrObs.observe(a);
+});
+</script>
+
+</body>
+</html>
